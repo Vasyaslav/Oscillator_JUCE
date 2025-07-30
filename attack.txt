@@ -1,0 +1,6 @@
+ATTACK
+Сделать как 0 по умолчанию
+Когда startNote перевести в 0
+В renderNextBlock повышать до 1
+
+FIX DECAY??
