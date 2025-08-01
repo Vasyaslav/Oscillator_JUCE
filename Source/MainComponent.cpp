@@ -22,8 +22,9 @@ MainComponent::MainComponent()
 
 	addAndMakeVisible(attackSlider);
 	attackSlider.setRange(0.00001, 0.00025);
+	attackSlider.setSkewFactorFromMidPoint(0.00005);
 	attackSlider.setTextBoxStyle(juce::Slider::TextBoxRight, false, 100, 20);
-	attackSlider.onValueChange = [this] { synthAudioSource.setAttackIncrease(attackSlider.getValue()); };
+	attackSlider.onValueChange = [this] { synthAudioSource.setAttackIncrease(attackSlider.getMaximum() - attackSlider.getValue() + attackSlider.getMinimum()); };
 	attackSlider.setValue(0.00005);
 	addAndMakeVisible(attackLabel);
 	attackLabel.setText("Attack", juce::dontSendNotification);
@@ -33,8 +34,9 @@ MainComponent::MainComponent()
 
 	addAndMakeVisible(decaySlider);
 	decaySlider.setRange(0.00001, 0.00025);
+	decaySlider.setSkewFactorFromMidPoint(0.00005);
 	decaySlider.setTextBoxStyle(juce::Slider::TextBoxRight, false, 100, 20);
-	decaySlider.onValueChange = [this] { synthAudioSource.setDecayReduction(decaySlider.getValue()); };
+	decaySlider.onValueChange = [this] { synthAudioSource.setDecayReduction(decaySlider.getMaximum() - decaySlider.getValue() + decaySlider.getMinimum()); };
 	decaySlider.setValue(0.00005);
 	addAndMakeVisible(decayLabel);
 	decayLabel.setText("Decay", juce::dontSendNotification);
@@ -44,8 +46,9 @@ MainComponent::MainComponent()
 
 	addAndMakeVisible(tailOffSlider);
 	tailOffSlider.setRange(0.00001, 0.00025);
+	tailOffSlider.setSkewFactorFromMidPoint(0.00005);
 	tailOffSlider.setTextBoxStyle(juce::Slider::TextBoxRight, false, 100, 20);
-	tailOffSlider.onValueChange = [this] { synthAudioSource.setTailOffReduction(tailOffSlider.getValue()); };
+	tailOffSlider.onValueChange = [this] { synthAudioSource.setTailOffReduction(tailOffSlider.getMaximum() - tailOffSlider.getValue() + tailOffSlider.getMinimum()); };
 	tailOffSlider.setValue(0.00005);
 	addAndMakeVisible(tailOffLabel);
 	tailOffLabel.setText("Tail off", juce::dontSendNotification);
@@ -109,14 +112,14 @@ void MainComponent::resized()
 	attackLabel.setBounds(10, 250, 60, 20);
 	attackToggle.setBounds(70, 250, 25, 20);
 	attackSlider.setBounds(100, 250, getWidth() - 110, 20);
-
-	tailOffLabel.setBounds(10, 280, 60, 20);
-	tailOffToggle.setBounds(70, 280, 25, 20);
-	tailOffSlider.setBounds(100, 280, getWidth() - 110, 20);
 	
-	decayLabel.setBounds(10, 310, 60, 20);
-	decayToggle.setBounds(70, 310, 25, 20);
-	decaySlider.setBounds(100, 310, getWidth() - 110, 20);
+	decayLabel.setBounds(10, 280, 60, 20);
+	decayToggle.setBounds(70, 280, 25, 20);
+	decaySlider.setBounds(100, 280, getWidth() - 110, 20);
+
+	tailOffLabel.setBounds(10, 310, 60, 20);
+	tailOffToggle.setBounds(70, 310, 25, 20);
+	tailOffSlider.setBounds(100, 310, getWidth() - 110, 20);
 }
 
 void MainComponent::timerCallback() 
