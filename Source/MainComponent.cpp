@@ -10,22 +10,48 @@ MainComponent::MainComponent()
 	levelSlider.setRange(0.0, 0.15);
 	levelSlider.setTextBoxStyle(juce::Slider::TextBoxRight, false, 100, 20);
 	levelSlider.onValueChange = [this] { synthAudioSource.setLevel(levelSlider.getValue()); };
+	levelSlider.setValue(0.05);
 	addAndMakeVisible(levelLabel);
 	levelLabel.setText("Level", juce::dontSendNotification);
+	addAndMakeVisible(levelToggle);
+	levelToggle.setToggleState(true, juce::dontSendNotification);
+	levelToggle.onClick = [this] { 
+		synthAudioSource.toggleLevel(levelToggle.getToggleState());
+		synthAudioSource.setLevel(levelSlider.getValue()); 
+		};
 
 	addAndMakeVisible(attackSlider);
-	attackSlider.setRange(0.00005, 0.00025);
+	attackSlider.setRange(0.00001, 0.00025);
 	attackSlider.setTextBoxStyle(juce::Slider::TextBoxRight, false, 100, 20);
 	attackSlider.onValueChange = [this] { synthAudioSource.setAttackIncrease(attackSlider.getValue()); };
+	attackSlider.setValue(0.00005);
 	addAndMakeVisible(attackLabel);
 	attackLabel.setText("Attack", juce::dontSendNotification);
+	addAndMakeVisible(attackToggle);
+	attackToggle.setToggleState(true, juce::dontSendNotification);
+	attackToggle.onClick = [this] { synthAudioSource.toggleAttack(attackToggle.getToggleState()); };
+
+	addAndMakeVisible(decaySlider);
+	decaySlider.setRange(0.00001, 0.00025);
+	decaySlider.setTextBoxStyle(juce::Slider::TextBoxRight, false, 100, 20);
+	decaySlider.onValueChange = [this] { synthAudioSource.setDecayReduction(decaySlider.getValue()); };
+	decaySlider.setValue(0.00005);
+	addAndMakeVisible(decayLabel);
+	decayLabel.setText("Decay", juce::dontSendNotification);
+	addAndMakeVisible(decayToggle);
+	decayToggle.setToggleState(true, juce::dontSendNotification);
+	decayToggle.onClick = [this] { synthAudioSource.toggleDecay(decayToggle.getToggleState()); };
 
 	addAndMakeVisible(tailOffSlider);
-	tailOffSlider.setRange(0.999, 0.9999);
+	tailOffSlider.setRange(0.00001, 0.00025);
 	tailOffSlider.setTextBoxStyle(juce::Slider::TextBoxRight, false, 100, 20);
 	tailOffSlider.onValueChange = [this] { synthAudioSource.setTailOffReduction(tailOffSlider.getValue()); };
+	tailOffSlider.setValue(0.00005);
 	addAndMakeVisible(tailOffLabel);
 	tailOffLabel.setText("Tail off", juce::dontSendNotification);
+	addAndMakeVisible(tailOffToggle);
+	tailOffToggle.setToggleState(true, juce::dontSendNotification);
+	tailOffToggle.onClick = [this] { synthAudioSource.toggleTailOff(tailOffToggle.getToggleState()); };
 	
 
 	addAndMakeVisible(keyboardComponent);
@@ -76,15 +102,21 @@ void MainComponent::resized()
 	// update their positions.
 	keyboardComponent.setBounds(10, 10, getWidth() - 20, 200);
 	
-	levelLabel.setBounds(10, 220, 90, 20);
+	levelLabel.setBounds(10, 220, 60, 20);
+	levelToggle.setBounds(70, 220, 25, 20);
 	levelSlider.setBounds(100, 220, getWidth() - 110, 20);
 
-	attackLabel.setBounds(10, 250, 90, 20);
+	attackLabel.setBounds(10, 250, 60, 20);
+	attackToggle.setBounds(70, 250, 25, 20);
 	attackSlider.setBounds(100, 250, getWidth() - 110, 20);
 
-	tailOffLabel.setBounds(10, 280, 90, 20);
+	tailOffLabel.setBounds(10, 280, 60, 20);
+	tailOffToggle.setBounds(70, 280, 25, 20);
 	tailOffSlider.setBounds(100, 280, getWidth() - 110, 20);
 	
+	decayLabel.setBounds(10, 310, 60, 20);
+	decayToggle.setBounds(70, 310, 25, 20);
+	decaySlider.setBounds(100, 310, getWidth() - 110, 20);
 }
 
 void MainComponent::timerCallback() 

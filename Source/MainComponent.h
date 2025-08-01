@@ -30,13 +30,20 @@ private:
     
     juce::Slider levelSlider;
     juce::Label  levelLabel;
+    juce::ToggleButton levelToggle;
     double currentLevel = 0.0, targetLevel = 0.0;
 
     juce::Slider attackSlider;
     juce::Label  attackLabel;
+    juce::ToggleButton attackToggle;
 
     juce::Slider tailOffSlider;
     juce::Label  tailOffLabel;
+    juce::ToggleButton tailOffToggle;
+
+    juce::Slider decaySlider;
+    juce::Label  decayLabel;
+    juce::ToggleButton decayToggle;
     
     juce::MidiKeyboardState keyboardState;
     SynthAudioSource synthAudioSource;

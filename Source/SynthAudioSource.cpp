@@ -45,6 +45,51 @@ void SynthAudioSource::setTailOffReduction(double tailOffReduction)
     }
 }
 
+void SynthAudioSource::setDecayReduction(double decayReduction)
+{
+    for (int i = 0; i < synth.getNumVoices(); i++)
+    {
+        SineWaveVoice* voice = (SineWaveVoice*)synth.getVoice(i);
+        voice->setDecayReduction(decayReduction);
+    }
+}
+
+void SynthAudioSource::toggleLevel(bool levelEnabled)
+{
+    for (int i = 0; i < synth.getNumVoices(); i++)
+    {
+        SineWaveVoice* voice = (SineWaveVoice*)synth.getVoice(i);
+        voice->toggleLevel(levelEnabled);
+    }
+}
+
+void SynthAudioSource::toggleAttack(bool attackEnabled)
+{
+    for (int i = 0; i < synth.getNumVoices(); i++)
+    {
+        SineWaveVoice* voice = (SineWaveVoice*)synth.getVoice(i);
+        voice->toggleAttack(attackEnabled);
+    }
+}
+
+void SynthAudioSource::toggleTailOff(bool tailOffEnabled)
+{
+    for (int i = 0; i < synth.getNumVoices(); i++)
+    {
+        SineWaveVoice* voice = (SineWaveVoice*)synth.getVoice(i);
+        voice->toggleTailOff(tailOffEnabled);
+    }
+}
+
+void SynthAudioSource::toggleDecay(bool decayEnabled)
+{
+    for (int i = 0; i < synth.getNumVoices(); i++)
+    {
+        SineWaveVoice* voice = (SineWaveVoice*)synth.getVoice(i);
+        voice->toggleDecay(decayEnabled);
+    }
+}
+
 void SynthAudioSource::setUsingSineWaveSound()
 {
     synth.clearSounds();

@@ -1,6 +1,9 @@
-ATTACK
-Сделать как 0 по умолчанию
-Когда startNote перевести в 0
-В renderNextBlock повышать до 1
-
-FIX DECAY??
+Attack	decay	tail off
+-	-	-		immediate full volume until release
++	-	-		increasing volume, immediate turn off upon release
+-	+	-		immediate full volume until release + decay time
+-	-	+		immediate full volume until release, then decreasing volume
++	+	-		increasing volume, immediate turn off upon release + decay time
++	-	+		increasing volume until release, then decreasing volume
+-	+	+		immediate full volume until release + decay time, then decreasing volume
++	+	+		increasing volume until release + decay time, then decreasing volume

@@ -26,8 +26,14 @@ struct SineWaveVoice: public juce::SynthesiserVoice
     void setLevel(double level);
     void setAttackIncrease(double attackIncrease);
     void setTailOffReduction(double tailOffReduction);
-
+    void setDecayReduction(double decayReduction);
+    void toggleLevel(bool levelEnabled);
+    void toggleAttack(bool attackEnabled);
+    void toggleTailOff(bool tailOffEnabled);
+    void toggleDecay(bool decayEnabled);
 private:
-    double currentAngle = 0.0, angleDelta = 0.0, level = 0.05, attack = 0.0, tailOff = 0.0;
-    double  attackIncrease = 0.00005, tailOffReduction = 0.9999;
+    double currentAngle = 0.0, angleDelta = 0.0, level = 0.05, attack = 0.0, decay = 0.0, tailOff = 0.0;
+    double  attackIncrease = 0.00005, decayReduction = 0.00005, tailOffReduction = 0.00005;
+    double decayVolume = 0.0;
+    bool levelEnabled = true, attackEnabled = true, decayEnabled = true, tailOffEnabled = true;
 };

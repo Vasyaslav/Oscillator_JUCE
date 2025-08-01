@@ -25,6 +25,11 @@ public:
     void setLevel(double level);
     void setAttackIncrease(double attackIncrease);
     void setTailOffReduction(double tailOffReduction);
+    void setDecayReduction(double decayReduction);
+    void toggleLevel(bool levelEnabled);
+    void toggleAttack(bool attackEnabled);
+    void toggleTailOff(bool tailOffEnabled);
+    void toggleDecay(bool decayEnabled);
 private:
     juce::MidiKeyboardState& keyboardState;
     juce::Synthesiser synth;
